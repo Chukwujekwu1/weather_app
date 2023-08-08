@@ -17,10 +17,11 @@ class WeatherScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.refresh_rounded, ),
-          )
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
+      body: Column( ),
     );
   }
 }
