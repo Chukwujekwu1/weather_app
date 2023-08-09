@@ -80,16 +80,216 @@ class WeatherScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+
             // weather forcast card
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Weather Forcast",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            const Text(
+              "Weather Forcast",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
+            ),
+            const SizedBox(height: 16),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 100,
+                    child: Card(
+                      elevation: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            18,
+                          ),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              "03:00",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Icon(
+                              Icons.cloud,
+                              size: 32,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("320.12")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+            
+                  //2
+            
+                  SizedBox(
+                    width: 100,
+                    child: Card(
+                      elevation: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            18,
+                          ),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              "09:00",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Icon(
+                              Icons.cloud,
+                              size: 32,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("310.01")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  //3
+                  SizedBox(
+                    width: 100,
+                    child: Card(
+                      elevation: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            18,
+                          ),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              "09:00",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Icon(
+                              Icons.cloud,
+                              size: 32,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("310.01")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  // 4
+                  SizedBox(
+                    width: 100,
+                    child: Card(
+                      elevation: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            18,
+                          ),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              "09:00",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Icon(
+                              Icons.cloud,
+                              size: 32,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("310.01")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  // 5
+                  SizedBox(
+                    width: 100,
+                    child: Card(
+                      elevation: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            18,
+                          ),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              "09:00",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Icon(
+                              Icons.cloud,
+                              size: 32,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("310.01")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Placeholder(
+              fallbackHeight: 150,
             ),
             const SizedBox(
               height: 20,
@@ -104,3 +304,7 @@ class WeatherScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
