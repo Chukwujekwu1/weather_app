@@ -98,11 +98,31 @@ class WeatherScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyForcastItem(),
-                  HourlyForcastItem(),
-                  HourlyForcastItem(),
-                  HourlyForcastItem(),
-                  HourlyForcastItem(),
+                  HourlyForcastItem(
+                    time: "09:00",
+                    value: "201.17",
+                    icon: Icons.cloud,
+                  ),
+                  HourlyForcastItem(
+                    time: "12:00",
+                    value: "201.54",
+                    icon: Icons.sunny,
+                  ),
+                  HourlyForcastItem(
+                    time: "15:00",
+                    value: "301.11",
+                    icon: Icons.water,
+                  ),
+                  HourlyForcastItem(
+                    time: "18:00",
+                    value: "309.78",
+                    icon: Icons.thunderstorm,
+                  ),
+                  HourlyForcastItem(
+                    time: "21:00",
+                    value: "403.45",
+                    icon: Icons.tornado,
+                  ),
                 ],
               ),
             ),
@@ -118,7 +138,7 @@ class WeatherScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-           const Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 AdditionalInfoItem(
@@ -134,7 +154,7 @@ class WeatherScreen extends StatelessWidget {
                 AdditionalInfoItem(
                   icon: Icons.beach_access,
                   label: "Presure",
-                  value:"beach" ,
+                  value: "beach",
                 ),
               ],
             )
