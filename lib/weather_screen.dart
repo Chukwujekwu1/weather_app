@@ -92,7 +92,7 @@ class WeatherScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             //
             const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -117,9 +117,9 @@ class WeatherScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 AdditionalInfoItem(),
                 AdditionalInfoItem(),
