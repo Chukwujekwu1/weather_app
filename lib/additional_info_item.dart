@@ -5,33 +5,29 @@ class AdditionalInfoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 120,
-      padding: const EdgeInsets.all(10.0),
-      child: const Column(
-        children: [
-          Icon(
-            Icons.air,
-            size: 32,
+    return const Column(
+      children: [
+        Icon(
+          Icons.air,
+          size: 32,
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          "Wind Speed",
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          "7.67",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            "Wind Speed",
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            "7.67",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }
