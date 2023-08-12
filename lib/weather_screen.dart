@@ -16,27 +16,25 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  @override
-  void initState() {
-    super.initState();
-    getCurrentWeather();
-  }
   Future getCurrentWeather() async {
     try {
-       String cityName = "Nigeria";
-    final res = await http.get(
-      Uri.parse(
-        "https://api.openweathermap.org/data/2.5/forecast?q=$cityName,africa&APPID=$openWeatherApiKey",
-      ),
-    );
-   final data =  jsonDecode(res.body);
-   if (data['cod'] != "200") {
-     throw "An unexpected erroe occurred";
-   }
+      String cityName = "Nigeria";
+      final res = await http.get(
+        Uri.parse(
+          "https://api.openweathermap.org/data/2.5/forecast?q=$cityName,africa&APPID=$openWeatherApiKey",
+        ),
+      );
+      final data = jsonDecode(res.body);
+      if (data['cod'] != "200") {
+        throw "An unexpected erroe occurred";
+      }
+
+      return data;
+
+      //data["list"][0]["main"]["temp"];
     } catch (e) {
       throw e.toString();
     }
-
   }
 
   @override
@@ -57,140 +55,145 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // main card
-            SizedBox(
-              width: double.infinity,
-              child: Card(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 10,
-                      sigmaY: 10,
+      body: FutureBuilder(
+        future: getCurrentWeather(),
+        builder: (context, snapshot) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // main card
+                SizedBox(
+                  width: double.infinity,
+                  child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "300°K ",
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 10,
+                          sigmaY: 10,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              Text(
+                                "300°K ",
+                                style: const TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              const Icon(
+                                Icons.cloud,
+                                size: 64,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Rain",
+                                style: TextStyle(
+                                  fontSize: 21,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Icon(
-                            Icons.cloud,
-                            size: 64,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Rain",
-                            style: TextStyle(
-                              fontSize: 21,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
+                const SizedBox(
+                  height: 20,
+                ),
 
-            // weather forcast card
-            const Text(
-              "Weather Forcast",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            //
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  HourlyForcastItem(
-                    time: "09:00",
-                    value: "201.17",
-                    icon: Icons.cloud,
+                // weather forcast card
+                const Text(
+                  "Weather Forcast",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  HourlyForcastItem(
-                    time: "12:00",
-                    value: "201.54",
-                    icon: Icons.sunny,
-                  ),
-                  HourlyForcastItem(
-                    time: "15:00",
-                    value: "301.11",
-                    icon: Icons.water,
-                  ),
-                  HourlyForcastItem(
-                    time: "18:00",
-                    value: "309.78",
-                    icon: Icons.thunderstorm,
-                  ),
-                  HourlyForcastItem(
-                    time: "21:00",
-                    value: "403.45",
-                    icon: Icons.tornado,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            // Additional information card
-            const Text(
-              "Additional Forcast",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                AdditionalInfoItem(
-                  icon: Icons.water_drop,
-                  label: "Humidity",
-                  value: "91",
                 ),
-                AdditionalInfoItem(
-                  icon: Icons.air,
-                  label: "Wind Speed",
-                  value: "7.69",
+                const SizedBox(height: 10),
+                //
+                const SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      HourlyForcastItem(
+                        time: "09:00",
+                        value: "201.17",
+                        icon: Icons.cloud,
+                      ),
+                      HourlyForcastItem(
+                        time: "12:00",
+                        value: "201.54",
+                        icon: Icons.sunny,
+                      ),
+                      HourlyForcastItem(
+                        time: "15:00",
+                        value: "301.11",
+                        icon: Icons.water,
+                      ),
+                      HourlyForcastItem(
+                        time: "18:00",
+                        value: "309.78",
+                        icon: Icons.thunderstorm,
+                      ),
+                      HourlyForcastItem(
+                        time: "21:00",
+                        value: "403.45",
+                        icon: Icons.tornado,
+                      ),
+                    ],
+                  ),
                 ),
-                AdditionalInfoItem(
-                  icon: Icons.beach_access,
-                  label: "Presure",
-                  value: "beach",
+                const SizedBox(
+                  height: 20,
                 ),
+                // Additional information card
+                const Text(
+                  "Additional Forcast",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    AdditionalInfoItem(
+                      icon: Icons.water_drop,
+                      label: "Humidity",
+                      value: "91",
+                    ),
+                    AdditionalInfoItem(
+                      icon: Icons.air,
+                      label: "Wind Speed",
+                      value: "7.69",
+                    ),
+                    AdditionalInfoItem(
+                      icon: Icons.beach_access,
+                      label: "Presure",
+                      value: "beach",
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
+            ),
+          );
+        },
       ),
     );
   }
