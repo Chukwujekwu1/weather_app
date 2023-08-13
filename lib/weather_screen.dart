@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/secret.dart';
 
 import 'additional_info_item.dart';
@@ -48,7 +49,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                
+              });
+            },
             icon: const Icon(Icons.refresh),
           ),
         ],
@@ -148,19 +153,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 const SizedBox(height: 10),
 
                 SizedBox(
-                  height: 150,
+                  height: 130,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
+                    itemCount: 39,
                     itemBuilder: (context, index) {
-                      index = 6;
-                      final hourlyTime =
-                          data["list"][index + 1]["dt_txt"].toString();
+                      final hourly = data["list"][index + 1];
                       final hourlyTemp =
                           data["list"][index + 1]["main"]["temp"].toString();
                       final hourlySky =
                           data["list"][index + 1]["weather"][0]["main"];
+                      final time =
+                          DateTime.parse(hourly["dt_txt"]);
+                     
                       return HourlyForcastItem(
-                          time: hourlyTime,
+                          time: DateFormat.j().format(time),
                           value: hourlyTemp,
                           icon: hourlySky == "Clouds" || hourlySky == "Rain"
                               ? Icons.cloud
