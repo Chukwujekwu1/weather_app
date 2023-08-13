@@ -16,8 +16,8 @@ class HourlyForcastItem extends StatelessWidget {
     return Card(
       elevation: 6,
       child: Container(
-        padding: const EdgeInsets.all(8.0),
-        width: 100,
+        padding: const EdgeInsets.all(10.0),
+        width: 110,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
             18,
@@ -27,8 +27,10 @@ class HourlyForcastItem extends StatelessWidget {
           children: [
             Text(
               time,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -37,13 +39,14 @@ class HourlyForcastItem extends StatelessWidget {
             ),
            Icon(
               icon,
-              size: 32,
+              size: 40,
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
               value,
+              style: const TextStyle(fontWeight: FontWeight.w500),
             )
           ],
         ),

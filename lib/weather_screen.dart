@@ -77,34 +77,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
           final currentHumidity = current["main"]["humidity"];
           final currentWind = current["wind"]["speed"];
 
-          final hourly1 = data["list"][1];
-          final hourly1Temp = hourly1["main"]["temp"];
-          final hourl1Sky = hourly1["weather"][0]["main"];
-
-          final hourly2 = data["list"][2];
-          final hourly2Temp = hourly2["main"]["temp"];
-          final hourl2Sky = hourly2["weather"][0]["main"]; 
-
-          
-          final hourly3 = data["list"][3];
-          final hourly3Temp = hourly3["main"]["temp"];
-          final hourl3Sky = hourly3["weather"][0]["main"]; 
-
-          final hourly4 = data["list"][4];
-          final hourly4Temp = hourly4["main"]["temp"];
-          final hourl4Sky = hourly4["weather"][0]["main"]; 
-
-          final hourly5 = data["list"][5];
-          final hourly5Temp = hourly5["main"]["temp"];
-          final hourl5Sky = hourly5["weather"][0]["main"]; 
-
-          final hourly6 = data["list"][6];
-          final hourly6Temp = hourly6["main"]["temp"];
-          final hourl6Sky = hourly6["weather"][0]["main"]; 
-
-
-
-
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -174,42 +146,26 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                //
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      HourlyForcastItem(
-                        time: "03:00",
-                        value: "$hourly1Temp",
-                        icon: hourl1Sky == "Clouds" || hourl1Sky == "Rain" ? Icons.cloud : Icons.sunny
-                      ),
-                      HourlyForcastItem(
-                        time: "06:00",
-                        value: "$hourly2Temp",
-                        icon: hourl2Sky == "Clouds" || hourl2Sky == "Rain" ? Icons.cloud : Icons.sunny,
-                      ),
-                      HourlyForcastItem(
-                        time: "09:00",
-                        value: "$hourly3Temp",
-                        icon: hourl3Sky == "Clouds" || hourl3Sky == "Rain" ? Icons.cloud : Icons.sunny,
-                      ),
-                      HourlyForcastItem(
-                        time: "12:00",
-                        value: "$hourly4Temp",
-                        icon: hourl4Sky == "Clouds" || hourl4Sky == "Rain" ? Icons.cloud : Icons.sunny,
-                      ),
-                      HourlyForcastItem(
-                        time: "15:00",
-                        value: "$hourly5Temp",
-                        icon: hourl5Sky == "Clouds" || hourl5Sky == "Rain" ? Icons.cloud : Icons.sunny,
-                      ),
-                      HourlyForcastItem(
-                        time: "15:00",
-                        value: "$hourly6Temp",
-                        icon: hourl6Sky == "Clouds" || hourl6Sky == "Rain" ? Icons.cloud : Icons.sunny,
-                      ),
-                    ],
+
+                SizedBox(
+                  height: 150,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      index = 6;
+                      final hourlyTime =
+                          data["list"][index + 1]["dt_txt"].toString();
+                      final hourlyTemp =
+                          data["list"][index + 1]["main"]["temp"].toString();
+                      final hourlySky =
+                          data["list"][index + 1]["weather"][0]["main"];
+                      return HourlyForcastItem(
+                          time: hourlyTime,
+                          value: hourlyTemp,
+                          icon: hourlySky == "Clouds" || hourlySky == "Rain"
+                              ? Icons.cloud
+                              : Icons.sunny);
+                    },
                   ),
                 ),
                 const SizedBox(
