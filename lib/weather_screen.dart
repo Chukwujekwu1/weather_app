@@ -29,7 +29,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
       if (data['cod'] != "200") {
         throw data["message"];
       }
-
       return data;
     } catch (e) {
       throw e.toString();
@@ -50,9 +49,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              setState(() {
-                
-              });
+              setState(() {});
             },
             icon: const Icon(Icons.refresh),
           ),
@@ -117,9 +114,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 16,
                               ),
                               Icon(
-                                currentSky == "Clouds" || currentSky == "Rain"
+                                currentSky == "Clouds"
                                     ? Icons.cloud
-                                    : Icons.sunny,
+                                    : currentSky == "Rain"
+                                        ? Icons.thunderstorm
+                                        : Icons.sunny,
                                 size: 64,
                               ),
                               const SizedBox(
@@ -163,15 +162,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           data["list"][index + 1]["main"]["temp"].toString();
                       final hourlySky =
                           data["list"][index + 1]["weather"][0]["main"];
-                      final time =
-                          DateTime.parse(hourly["dt_txt"]);
-                     
+                      final time = DateTime.parse(hourly["dt_txt"]);
+
                       return HourlyForcastItem(
-                          time: DateFormat.j().format(time),
-                          value: hourlyTemp,
-                          icon: hourlySky == "Clouds" || hourlySky == "Rain"
-                              ? Icons.cloud
-                              : Icons.sunny);
+                        time: DateFormat.j().format(time),
+                        value: hourlyTemp,
+                        icon: hourlySky == "Clouds"
+                            ? Icons.cloud
+                            : hourlySky == "Rain"
+                                ? Icons.thunderstorm
+                                : Icons.sunny,
+                      );
                     },
                   ),
                 ),
